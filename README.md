@@ -13,6 +13,10 @@ A front-end attendance management portal built with **pure HTML, CSS and JavaScr
 - **Admin tools** — student CRUD, department catalogue, mentor assignments, account governance, audit trail.
 - **Database console** — `SELECT / INSERT / UPDATE / DELETE / SHOW / DESC` against the live store, table browser, JSON backup & restore.
 
+## Live demo
+
+https://student-attendance-management-system-38ubmllyh.vercel.app
+
 ## Quick start
 
 Open `index.html` in a browser (or serve the folder with any static server).
