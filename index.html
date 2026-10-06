@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SAMS | Student Attendance Management System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="scene-bg" aria-hidden="true">
+    <div class="aurora a1"></div>
+    <div class="aurora a2"></div>
+    <div class="aurora a3"></div>
+    <div class="orb o1"></div>
+    <div class="orb o2"></div>
+    <div class="orb o3"></div>
+    <div class="orb o4"></div>
+    <div class="grid-floor"></div>
+    <div class="stars" id="stars"></div>
+  </div>
+
+  <div id="toast-wrap"></div>
+
+  <div id="app">
+
+    <section class="view active" id="view-auth">
+      <header class="brand">
+        <div class="scene cube-scene">
+          <div class="cube">
+            <div class="face f-front">S</div>
+            <div class="face f-back">A</div>
+            <div class="face f-right">M</div>
+            <div class="face f-left">S</div>
+            <div class="face f-top">26</div>
+            <div class="face f-bottom">01</div>
+          </div>
+        </div>
+        <div class="brand-text">
+          <h1>SAMS<span class="dot">.</span></h1>
+          <p>Student Attendance Management System</p>
+        </div>
+        <div class="brand-meta">
+          <span class="pill" id="clock">--:--:--</span>
+          <span class="pill ghost">v3.0 &middot; Secure Portal</span>
+        </div>
+      </header>
+
+      <div class="auth-grid">
+        <div class="art-panel tilt" data-tilt>
+          <div class="art-frame">
+            <img src="./R.jfif" alt="Campus">
+            <div class="art-glow"></div>
+          </div>
+          <div class="art-copy">
+            <h2>School &amp; College.<br>Every section, one gate.</h2>
+            <p>School (Class 11-12), College Autonomous and College Engineering &mdash; each department with sections A, B, C and D. Attendance opens only for the mentor of that section.</p>
+          </div>
+          <div class="float-chip fc1"><b id="chip-students">0</b> Students</div>
+          <div class="float-chip fc2"><b id="chip-records">0</b> Records</div>
+          <div class="float-chip fc3"><b id="chip-rate">0%</b> Attendance</div>
+        </div>
+
+        <div class="auth-card scene" id="auth-card">
+          <div class="role-strip" id="role-strip">
+            <button class="role-btn active" data-role="student">
+              <span class="rb-ico">ST</span>
+              <span class="rb-txt">Student</span>
+            </button>
+            <button class="role-btn" data-role="staff">
+              <span class="rb-ico">TF</span>
+              <span class="rb-txt">Staff</span>
+            </button>
+            <button class="role-btn" data-role="admin">
+              <span class="rb-ico">AD</span>
+              <span class="rb-txt">Admin</span>
+            </button>
+            <button class="role-btn" data-role="database">
+              <span class="rb-ico">DB</span>
+              <span class="rb-txt">Database</span>
+            </button>
+          </div>
+
+          <div class="mode-tabs" id="mode-tabs">
+            <button type="button" class="mode-btn active" data-mode="login">Sign in</button>
+            <button type="button" class="mode-btn" data-mode="register">Register</button>
+          </div>
+
+          <div class="flipper" id="flipper">
+            <div class="auth-inner pane" id="login-pane">
+              <div class="auth-head">
+                <div class="role-badge" id="role-badge">STUDENT</div>
+                <h2 id="login-title">Student Login</h2>
+                <p id="login-sub">Access your attendance record, subject percentages and history.</p>
+              </div>
+
+              <form id="login-form" autocomplete="off">
+                <label class="field">
+                  <span>Username</span>
+                  <input type="text" id="login-user" placeholder="e.g. s001" required>
+                </label>
+                <label class="field">
+                  <span>Password</span>
+                  <div class="pw-wrap">
+                    <input type="password" id="login-pass" placeholder="••••••••" required>
+                    <button type="button" class="pw-toggle" id="pw-toggle">Show</button>
+                  </div>
+                </label>
+                <div class="form-row">
+                  <label class="check"><input type="checkbox" id="remember"><i></i> Remember me</label>
+                  <button type="button" class="link-btn" id="fill-demo">Fill demo credentials</button>
+                </div>
+                <button type="submit" class="btn-primary" id="login-submit">
+                  <span>Enter Portal</span>
+                  <svg viewBox="0 0 24 24" width="18" height="18"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+              </form>
+
+              <div class="demo-box">
+                <div class="demo-title">Demo keys</div>
+                <code id="demo-creds">s001 / student123</code>
+              </div>
+
+              <div class="switch-line">
+                First time here?
+                <button type="button" class="link-btn" data-mode="register">Create a new account</button>
+              </div>
+            </div>
+
+            <div class="auth-inner pane" id="register-pane" hidden>
+              <div class="auth-head">
+                <div class="role-badge">FIRST-TIME REGISTRATION</div>
+                <h2>Create your account</h2>
+                <p>Students and staff register themselves. Admin &amp; database logins are issued by the administrator.</p>
+              </div>
+
+              <div class="seg" id="reg-seg">
+                <button type="button" class="seg-btn active" data-rrole="student">Student login</button>
+                <button type="button" class="seg-btn" data-rrole="staff">Staff login</button>
+              </div>
+
+              <form id="reg-form" autocomplete="off">
+                <div class="two">
+                  <label class="field"><span>Full name</span><input id="rg-name" placeholder="Your full name" required></label>
+                  <label class="field"><span>Email</span><input id="rg-email" type="email" placeholder="name@mail.com" required></label>
+                </div>
+                <div class="two">
+                  <label class="field"><span>Username</span><input id="rg-user" placeholder="3-24 characters" required></label>
+                  <label class="field"><span>Password</span><input id="rg-pass" type="password" placeholder="min 6 characters" required></label>
+                </div>
+                <div class="two" id="rg-extra">
+                  <label class="field"><span>Phone (optional)</span><input id="rg-phone" placeholder="98xxxxxx"></label>
+                  <label class="field"><span>City (optional)</span><input id="rg-city" placeholder="Your city"></label>
+                </div>
+
+                <div class="mini-label" id="rg-context">Your class</div>
+
+                <div class="two">
+                  <label class="field"><span>Institution</span><select id="rg-inst"></select></label>
+                  <label class="field"><span>Department</span><select id="rg-dept"></select></label>
+                </div>
+                <div class="two">
+                  <label class="field"><span>Year / Class</span><select id="rg-year"></select></label>
+                  <label class="field"><span>Section</span><select id="rg-sec"></select></label>
+                </div>
+
+                <button type="submit" class="btn-primary" id="reg-submit"><span>Create account &amp; enter</span></button>
+              </form>
+
+              <div class="switch-line">
+                Already registered?
+                <button type="button" class="link-btn" data-mode="login">Back to sign in</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="role-cards" id="role-cards">
+        <article class="rcard" data-role="student">
+          <div class="rc-top"><span class="rc-num">01</span><span class="rc-tag">Learner</span></div>
+          <h3>Student Portal</h3>
+          <p>Live attendance percentage, subject-wise breakdown and month-by-month history for your section.</p>
+          <span class="rc-go">Open &rarr;</span>
+        </article>
+        <article class="rcard" data-role="staff">
+          <div class="rc-top"><span class="rc-num">02</span><span class="rc-tag">Mentor</span></div>
+          <h3>Staff Portal</h3>
+          <p>Roll call opens only for your mentored sections, with a preview step before saving and download.</p>
+          <span class="rc-go">Open &rarr;</span>
+        </article>
+        <article class="rcard" data-role="admin">
+          <div class="rc-top"><span class="rc-num">03</span><span class="rc-tag">Control</span></div>
+          <h3>Admin Portal</h3>
+          <p>Campus-wide analytics, departments, mentor assignments, account governance and audit trail.</p>
+          <span class="rc-go">Open &rarr;</span>
+        </article>
+        <article class="rcard" data-role="database">
+          <div class="rc-top"><span class="rc-num">04</span><span class="rc-tag">Data</span></div>
+          <h3>Database Console</h3>
+          <p>Browse tables, run SQL statements, inspect schema, back up and restore the store.</p>
+          <span class="rc-go">Open &rarr;</span>
+        </article>
+      </div>
+
+      <footer class="foot">SAMS &copy; 2026 &middot; Client-side SQL engine powered by LocalStorage</footer>
+    </section>
+
+    <section class="view" id="view-app">
+      <header class="topbar">
+        <button class="icon-btn" id="nav-toggle" aria-label="Menu">
+          <svg viewBox="0 0 24 24" width="20" height="20"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+        <div class="top-brand">
+          <span class="mini-cube">S</span>
+          <span>SAMS <b id="top-role">Portal</b></span>
+        </div>
+        <div class="top-right">
+          <span class="pill" id="top-clock">--:--</span>
+          <div class="user-chip" id="user-chip">
+            <span class="avatar" id="user-avatar">A</span>
+            <span class="u-meta"><b id="user-name">User</b><i id="user-role">role</i></span>
+          </div>
+          <button class="logout-btn" id="logout-btn">Logout</button>
+        </div>
+      </header>
+
+      <div class="shell">
+        <aside class="sidebar" id="sidebar"></aside>
+        <main class="main" id="main"></main>
+      </div>
+    </section>
+
+  </div>
+
+  <script src="db.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
